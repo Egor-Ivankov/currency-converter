@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding-inline: 15px;
+    border-bottom: 2px solid green;
+    color: rgb(44, 43, 43);
+    .light-icon {
+        width: 30px;
+        cursor: pointer;
+    }
+}
+

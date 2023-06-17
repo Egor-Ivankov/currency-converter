@@ -1,0 +1,18 @@
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    
+    li {
+        list-style: none;
+        font-size: 25px;
+        font-weight: 400;
+        letter-spacing: .5px;
+        word-spacing: 13px;
+        border: 1px solid green;
+        border-radius: 4px;
+        padding: 8px;
+        box-shadow: 4px 4px 4px 1px rgba(156, 148, 148, 0.534);
+    }
+}
+    
+
