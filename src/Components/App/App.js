@@ -8,9 +8,7 @@ function App() {
 		<div className="app">
 			<div className="border">
 				<Header/>
-				<div className="container">
-					<SubHeader/>
-				</div>
+				<SubHeader/>
 			</div>
 		</div>
 	);
