@@ -71,7 +71,8 @@ const SubHeader = () => {
                 <h2>Currency calculator</h2>
                 <div className="calc-container">
                     <div className='valute'>
-                        <p>Selected currency: <b>{selectedValute}</b></p>
+                        <p>Selected currency: <b>{selectedValute ? selectedValute : 'none'}</b></p>
+                        <input type="text" placeholder=' Enter your valute value'/>
                     </div>
                     <img src={swap} alt="swap-icon" />
                     <div className='valute'>
