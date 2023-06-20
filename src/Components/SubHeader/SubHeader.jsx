@@ -67,19 +67,35 @@ const SubHeader = () => {
     const onCurrency = () => {
         switch(selectedValute) {
             case '$': 
-                setCurrency((input * dollar).toFixed(2) + '₽');
+                if (input >= 1) {
+                    setCurrency((input * dollar).toFixed(2) + '₽');
+                } else {
+                    setCurrency('Please select a value greater than zero')
+                }
                 break;
             case '€':
-                setCurrency((input * euro).toFixed(2) + '₽');
+                if (input >= 1) {
+                    setCurrency((input * euro).toFixed(2) + '₽');
+                } else {
+                    setCurrency('Please select a value greater than zero')
+                }
                 break;
             case '£':
-                setCurrency((input * pound).toFixed(2) + '₽');
+                if (input >= 1) {
+                    setCurrency((input * pound).toFixed(2) + '₽');
+                } else {
+                    setCurrency('Please select a value greater than zero')
+                }
                 break;
             case '¥':
-                setCurrency((input * yen).toFixed(2) + '₽');
+                if (input >= 1) {
+                    setCurrency((input * yen).toFixed(2) + '₽');
+                } else {
+                    setCurrency('Please select a value greater than zero')
+                }
                 break;
             default: 
-                setCurrency('Please select a currency')
+                setCurrency('Please, select a currency')
             }       
     }
 
