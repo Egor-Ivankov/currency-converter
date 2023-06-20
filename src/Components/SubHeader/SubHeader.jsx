@@ -10,6 +10,8 @@ const SubHeader = () => {
     const [pound, setPound] = useState(0);
     const [yen, setYen] = useState(0);
     const [selectedValute, setSelectedValute] = useState(null);
+    const [input, setInput] = useState('');
+    const [currency, setCurrency] = useState('');
 
 
     const getDollarValue = async () => {
@@ -47,10 +49,10 @@ const SubHeader = () => {
         getDollarValue();
         getEuroValue();
         getPoundValue();
-        getYenValue()
+        getYenValue();
     })
-    const valutesSimbol = ['$', '€', '£', '¥']
-    const valutes = [dollar, euro, pound, yen]
+    const valutesSimbol = ['$', '€', '£', '¥'];
+    const valutes = [dollar, euro, pound, yen];
     const elements = valutes.map((item, i) => {
         return <li 
                     key={i}
@@ -60,7 +62,27 @@ const SubHeader = () => {
                         setSelectedValute(valutesSimbol[i])
                     }}
                     >{valutesSimbol[i]} = {item}₽</li>
-    })
+    });
+
+    const onCurrency = () => {
+        switch(selectedValute) {
+            case '$': 
+                setCurrency((input * dollar).toFixed(2) + '₽');
+                break;
+            case '€':
+                setCurrency((input * euro).toFixed(2) + '₽');
+                break;
+            case '£':
+                setCurrency((input * pound).toFixed(2) + '₽');
+                break;
+            case '¥':
+                setCurrency((input * yen).toFixed(2) + '₽');
+                break;
+            default: 
+                setCurrency('Please select a currency')
+            }       
+    }
+
     return (
         <>
             <ul className='sub-header'>
@@ -72,11 +94,12 @@ const SubHeader = () => {
                 <div className="calc-container">
                     <div className='valute'>
                         <p>Selected currency: <b>{selectedValute ? selectedValute : 'none'}</b></p>
-                        <input type="text" placeholder=' Enter your valute value'/>
+                        <input type="number" placeholder=' Enter your valute value'value={input} onChange={e => setInput(e.target.value)}/>
                     </div>
-                    <img src={swap} alt="swap-icon" />
+                    <button onClick={onCurrency}><img src={swap} alt="swap-icon" /></button>
                     <div className='valute'>
                         <p>Outcome</p>
+                        <span>{currency}</span>
                     </div>
                 </div>
             </div>
