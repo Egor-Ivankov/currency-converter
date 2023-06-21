@@ -12,23 +12,22 @@ export default class ValuteService {
         return await res.json();
     } 
 
-    getDollar = async () => {
-        const res = await this.getValuteCourse(this._courseValuteURL);
-        return res.Valute.USD.Value;
-    }
-
-    getEuro = async () => {
-        const res = await this.getValuteCourse(this._courseValuteURL);
-        return res.Valute.EUR.Value;
-    }
-
-    getPound = async () => {
-        const res = await this.getValuteCourse(this._courseValuteURL);
-        return res.Valute.GBP.Value;
-    }
-
-    getYen = async () => {
-        const res = await this.getValuteCourse(this._courseValuteURL);
-        return res.Valute.JPY.Value;
+    getValute = async (value) => {
+        switch(value) {
+            case 1:
+                const USD = await this.getValuteCourse(this._courseValuteURL);
+                return USD.Valute.USD.Value;
+            case 2: 
+                const EUR = await this.getValuteCourse(this._courseValuteURL);
+                return EUR.Valute.EUR.Value;
+            case 3:
+                const GBP = await this.getValuteCourse(this._courseValuteURL);
+                return GBP.Valute.GBP.Value;
+            case 4:
+                const JPY = await this.getValuteCourse(this._courseValuteURL);
+                return JPY.Valute.JPY.Value;
+            default:
+                return null;
+        }   
     }
 }

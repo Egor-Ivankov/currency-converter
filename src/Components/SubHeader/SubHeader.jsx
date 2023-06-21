@@ -14,24 +14,27 @@ const SubHeader = () => {
     const [currency, setCurrency] = useState('');
 
 
-    const getDollarValue = async () => {
-        const res = await valute.getDollar();
-        setDollar(res.toFixed(2));
-    }
-
-    const getEuroValue = async () => {
-        const res = await valute.getEuro();
-        setEuro(res.toFixed(2));
-    }
-    
-    const getPoundValue = async () => {
-        const res = await valute.getPound();
-        setPound(res.toFixed(2));
-    }
-
-    const getYenValue = async () => {
-        const res = await valute.getYen();
-        setYen(res.toFixed(2));
+    const getValuteCourse = async (value) => {
+        switch(value) {
+            case 1: 
+                const dollar = await valute.getValute(1);
+                setDollar(dollar.toFixed(2));
+                break;
+            case 2:
+                const euro = await valute.getValute(2);
+                setEuro(euro.toFixed(2));
+                break;
+            case 3:
+                const pound = await valute.getValute(3);
+                setPound(pound.toFixed(2));
+                break;
+            case 4:
+                const yen = await valute.getValute(4);
+                setYen(yen.toFixed(2));
+                break;
+            default:
+                return null;
+        }
     }
 
     const itemRefs = [];
@@ -46,11 +49,11 @@ const SubHeader = () => {
     }
 
     useEffect(() => {
-        getDollarValue();
-        getEuroValue();
-        getPoundValue();
-        getYenValue();
+        for (let i = 1; i < 5; i++) {
+            getValuteCourse(i);
+        }
     })
+
     const valutesSimbol = ['$', '€', '£', '¥'];
     const valutes = [dollar, euro, pound, yen];
     const elements = valutes.map((item, i) => {
@@ -65,38 +68,26 @@ const SubHeader = () => {
     });
 
     const onCurrency = () => {
-        switch(selectedValute) {
-            case '$': 
-                if (input >= 1) {
-                    setCurrency((input * dollar).toFixed(2) + '₽');
-                } else {
-                    setCurrency('Please select a value greater than zero')
-                }
-                break;
-            case '€':
-                if (input >= 1) {
-                    setCurrency((input * euro).toFixed(2) + '₽');
-                } else {
-                    setCurrency('Please select a value greater than zero')
-                }
-                break;
-            case '£':
-                if (input >= 1) {
-                    setCurrency((input * pound).toFixed(2) + '₽');
-                } else {
-                    setCurrency('Please select a value greater than zero')
-                }
-                break;
-            case '¥':
-                if (input >= 1) {
-                    setCurrency((input * yen).toFixed(2) + '₽');
-                } else {
-                    setCurrency('Please select a value greater than zero')
-                }
-                break;
-            default: 
-                setCurrency('Please, select a currency')
-            }       
+        if (input >= 1) {
+            switch(selectedValute) {
+                case '$': 
+                        setCurrency((input * dollar).toFixed(2) + '₽');
+                    break;
+                case '€':
+                        setCurrency((input * euro).toFixed(2) + '₽');
+                    break;
+                case '£':
+                        setCurrency((input * pound).toFixed(2) + '₽');
+                    break;
+                case '¥':
+                        setCurrency((input * yen).toFixed(2) + '₽');
+                    break;
+                default: 
+                    setCurrency('Please, select a currency')
+                } 
+        } else {
+            setCurrency('Please enter a number greater than 0');
+        }
     }
 
     return (
