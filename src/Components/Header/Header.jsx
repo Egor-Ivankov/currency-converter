@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './header.scss'
+import './header.scss';
 import moon from '../../img/moon.png';
 import sun from '../../img/sun.png'
 const Header = () => {

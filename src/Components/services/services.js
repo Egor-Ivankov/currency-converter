@@ -6,7 +6,7 @@ export default class ValuteService {
         const res = await fetch(url);
 
         if(!res.ok) {
-            throw new Error(`Could not to fetch ${url}, status: ${res.status}`)
+            throw new Error(`Could not to fetch ${url}, status: ${res.status}`);
         }
 
         return await res.json();

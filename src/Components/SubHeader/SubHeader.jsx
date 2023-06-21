@@ -40,12 +40,12 @@ const SubHeader = () => {
     const itemRefs = [];
 
     const setRef = (ref) => {
-        itemRefs.push(ref)
+        itemRefs.push(ref);
     }
 
     const focusOnItem = (id) => {
-        itemRefs.forEach(item => item.classList.remove('selected'))
-        itemRefs[id].classList.add('selected')
+        itemRefs.forEach(item => item.classList.remove('selected'));
+        itemRefs[id].classList.add('selected');
     }
 
     useEffect(() => {
@@ -83,7 +83,7 @@ const SubHeader = () => {
                         setCurrency((input * yen).toFixed(2) + '₽');
                     break;
                 default: 
-                    setCurrency('Please, select a currency')
+                    setCurrency('Please, select a currency');
                 } 
         } else {
             setCurrency('Please enter a number greater than 0');
